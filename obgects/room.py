@@ -1,17 +1,21 @@
-
+from obgects.solidrs import Solider
 
 MAX_TENANTS = 8
 
 class Room:
     def __init__(self,number_room):
         self.number_room = number_room
-        self.number_tenants = 0
+        self.number_tenants = 8
         self.tenants = []
 
-    def add_tenant(self, tenant):
+    def add_tenant(self, tenant:Solider,dorm):
         if self.number_tenants <= MAX_TENANTS:
             self.number_tenants +=1
             self.tenants.append(tenant)
+            tenant.room = self.number_room
+            tenant.location['room'] = self.number_room
+            tenant.insert_location(room=self.number_room, dorm=dorm)
+
         else:
             print('room full')
 

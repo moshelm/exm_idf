@@ -1,5 +1,5 @@
-from dorm import Dorm
-
+from obgects.dorm import Dorm
+from obgects.solidrs import Solider
 class Base:
     def __init__(self,name = 'The Seven Harvests', dorms = 2):
         self.name = name
@@ -8,7 +8,7 @@ class Base:
     def add_dorm(self, dorm):
         self.dorms.append(dorm)
 
-    def add_tenant(self, tenant, specific_dorm = None):
+    def add_tenant(self, tenant:Solider, specific_dorm = None):
         dorm = None if specific_dorm is None else self.find_dorm(specific_dorm)
         if dorm:
             if not dorm.is_dorm_full():

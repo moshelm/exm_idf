@@ -1,5 +1,6 @@
 
-from room import Room
+from obgects.room import Room
+from obgects.solidrs import Solider
 
 
 class Dorm:
@@ -7,22 +8,24 @@ class Dorm:
         self.rooms = [Room(number_room) for number_room in range(8)]
         self.number_dorm = number_dorm
 
-    def add_tenant(self, tenant, specific_room  = None):
+    def add_tenant(self, tenant:Solider, specific_room  = None):
         room = None if specific_room is None else self.find_room(specific_room)
         if room:
             if room.is_room_full():
                 print('this room full')
                 return
             else:
-                room.add_tenant(tenant)
+                room.add_tenant(tenant,self.number_dorm)
+                tenant.dorm = self.number_dorm
+                tenant.location['dorm'] = self.number_dorm
                 print(f'{tenant} welcome to room {specific_room}')
         else:
             optional_room = self.returning_room_empty()
             if optional_room is None:
                 print('the dorm full')
             else:
-                number_room,room  = optional_room[0]
-                room.add_tenant(tenant)
+                number_room,room  = optional_room
+                room.add_tenant(tenant,self.number_dorm)
                 print(f'{tenant} welcome to room {number_room} our choice')
                 return
 
