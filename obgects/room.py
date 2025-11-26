@@ -16,9 +16,12 @@ class Room:
             print('room full')
 
     def remove_tenant(self,tenant):
-        if self.number_tenants > 0:
-            self.number_tenants -= 1
-            self.tenants.remove(tenant)
+        if self.number_tenants > 0 :
+            if tenant in self.tenants:
+                self.number_tenants -= 1
+                self.tenants.remove(tenant)
+            else:
+                print(f'this {tenant} not in this room')
         else:
             print('empty room')
 
