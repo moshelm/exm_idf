@@ -9,13 +9,12 @@ class Solider:
         self.gender = gender
         self.is_placed = False
         self.location = {'dorm':None,'room':None}
-        self.dorm = None
-        self.room = None
+
 
     def insert_location(self,dorm, room):
-        self.room = room
-        self.dorm = dorm
-        self.placement = True
+        self.location['room'] = room
+        self.location['dorm'] = dorm
+        self.is_placed = True
 
     def __str__(self):
-        return f'{self.first_name} {self.last_name} ID:{self.personal_number}'
+        return f'{self.first_name} {self.last_name} ID : {self.personal_number} dis : {self.distance_base}'
