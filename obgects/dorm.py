@@ -1,12 +1,22 @@
-
 from obgects.room import Room
 from obgects.solidrs import Solider
 
 
 class Dorm:
     def __init__(self,number_dorm):
-        self.rooms = [Room(number_room) for number_room in range(8)]
+        self.rooms = [Room(f'{number_room}') for number_room in range(1,11)]
         self.number_dorm = number_dorm
+
+    def rooms_empty(self):
+        lst = [room.number_room for room in self.rooms if not room.is_room_full()]
+        return len(lst) , lst
+    def rooms_full(self):
+        lst = [room.number_room for room in self.rooms if room.is_room_full()]
+        return len(lst) , lst
+    def rooms_middel(self):
+        lst = [room.number_room for room in self.rooms if not (room.is_room_full() or not room.is_room_full())]
+        return len(lst) , lst
+
 
     def add_tenant(self, tenant:Solider, specific_room  = None):
         room = None if specific_room is None else self.find_room(specific_room)
